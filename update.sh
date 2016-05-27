@@ -82,7 +82,7 @@ EOF
     # build iso-slim image
     docker build -t $repo:$version-iso-slim iso-slim
     for tag in $tags; do
-    	docker tag -f $repo:$version-iso-slim $repo:$tag-iso-slim
+    	docker tag $repo:$version-iso-slim $repo:$tag-iso-slim
     done
 
     # create iso dockerfile
@@ -102,7 +102,7 @@ EOF
     fi
     docker build -t $repo:$version-iso iso
     for tag in $tags; do
-        docker tag -f $repo:$version-iso $repo:$tag-iso
+        docker tag $repo:$version-iso $repo:$tag-iso
     done
 
     docker run -it --rm $repo:$version-iso uname -a
@@ -129,7 +129,7 @@ EOF
 	       - "$repo:$version-clean"
     docker rm "$tmpname"
     for tag in $tags; do
-	docker tag -f $repo:$version-clean $repo:$tag-clean
+	docker tag $repo:$version-clean $repo:$tag-clean
     done
     docker run -it --rm $repo:$version-clean uname -a
 done
